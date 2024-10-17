@@ -1,0 +1,28 @@
+# Define the primary flash area size (adjust based on the chip's total flash size)
+flash_primary:
+  size: 1024k   # nRF52840 has 1 MB of flash
+
+# Bootloader partition (MCUboot)
+mcuboot:
+  address: 0x00000
+  size: 40k               # Bootloader reduced to 40 KB to free space
+
+# Slot0 partition (main application)
+slot0:
+  address: 0x0A000        # Starts after the bootloader
+  size: 472k              # Main application (Slot 0)
+
+# Slot1 partition (DFU application for OTA updates)
+slot1:
+  address: 0x7A000        # Starts after Slot 0
+  size: 472k              # DFU application (Slot 1)
+
+# Scratch partition (for MCUboot OTA updates)
+scratch:
+  address: 0xF4000        # Starts after Slot 1
+  size: 32k               # Scratch partition, used during DFU
+
+# Settings partition (non-volatile storage for settings)
+settings_storage:
+  address: 0xF8000        # Starts after the Scratch partition
+  size: 4k                # Storage for settings, 4 KB
