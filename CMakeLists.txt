@@ -3,13 +3,17 @@
 #
 # SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
 #
-
 cmake_minimum_required(VERSION 3.21.0)
 
 # Set the board to avoid deprecated warnings
 set(BOARD "nrf52840dk/nrf52840")
 message(STATUS "Board set to: ${BOARD}")
-message(STATUS "ZEPHYR_BASE: $ENV{ZEPHYR_BASE}")
+message(STATUS "CMAKE_MODULE_PATH is set to: ${CMAKE_MODULE_PATH}")
+
+#Set Python3
+# Set Python3
+set(PYTHON_EXECUTABLE "C:/Users/lockh/AppData/Local/Programs/Python/Python312/python.exe" CACHE PATH "Path to Python executable")
+message(STATUS "Using Python executable: ${PYTHON_EXECUTABLE}")
 
 # Set the correct path for MbedTLS
 set(MbedTLS_DIR "C:/ncs/v2.7.0/modules/crypto/mbedtls/cmake")
@@ -19,13 +23,9 @@ message(STATUS "MbedTLS_DIR: ${MbedTLS_DIR}")
 set(CONF_FILE "C:/ncs/v2.7.0/bootloader/mcuboot/boot/zephyr/prj.conf")
 message(STATUS "MCUBoot project configuration set to: ${CONF_FILE}")
 
-# Matter configuration directory
-set(ZEPHYR_CONNECTEDHOMEIP_MODULE_DIR "C:/ncs/v2.7.0/modules/lib/matter")
-message(STATUS "ZEPHYR_CONNECTEDHOMEIP_MODULE_DIR: ${ZEPHYR_CONNECTEDHOMEIP_MODULE_DIR}")
-
 # Find Zephyr
 find_package(Zephyr HINTS $ENV{ZEPHYR_BASE})
-include(${ZEPHYR_BASE}/cmake/modules/extensions.cmake)
+message(STATUS "CMAKE_SOURCE_DIR is set to: ${CMAKE_SOURCE_DIR}")
 
 # MBEDTLS Script Directory
 set(MBEDTLS_SCRIPTS_DIR "C:/ncs/v2.7.0/modules/crypto/mbedtls/tests/scripts")
@@ -34,7 +34,6 @@ set(MBEDTLS_SCRIPTS_DIR "C:/ncs/v2.7.0/modules/crypto/mbedtls/tests/scripts")
 add_subdirectory(${CMAKE_SOURCE_DIR}/modules/crypto/mbedtls)
 target_include_directories(app PUBLIC ${CMAKE_SOURCE_DIR}/modules/crypto/mbedtls/include)
 target_link_libraries(app PUBLIC mbedcrypto mbedtls mbedx509)
-include(${ZEPHYR_BASE}/cmake/modules/extensions.cmake)  # Ensure this path is correct
 
 # Enable GNU STD support and initialize the Matter Data Model.
 include(${ZEPHYR_CONNECTEDHOMEIP_MODULE_DIR}/config/nrfconnect/app/enable-gnu-std.cmake)

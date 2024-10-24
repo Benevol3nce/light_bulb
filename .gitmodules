@@ -1,0 +1,6 @@
+[submodule "modules/lib/matter"]
+	path = modules/lib/matter
+	url = https://github.com/project-chip/connectedhomeip.git
+[submodule "nrf"]
+	path = nrf
+	url = https://github.com/nrfconnect/sdk-nrf.git
