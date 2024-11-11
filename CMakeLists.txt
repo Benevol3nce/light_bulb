@@ -7,40 +7,25 @@ cmake_minimum_required(VERSION 3.21.0)
 
 # Set the board to avoid deprecated warnings
 set(BOARD "nrf52840dk/nrf52840")
-message(STATUS "Board set to: ${BOARD}")
-message(STATUS "CMAKE_MODULE_PATH is set to: ${CMAKE_MODULE_PATH}")
-
-#Set Python3
-# Set Python3
-set(PYTHON_EXECUTABLE "C:/Users/lockh/AppData/Local/Programs/Python/Python312/python.exe" CACHE PATH "Path to Python executable")
-message(STATUS "Using Python executable: ${PYTHON_EXECUTABLE}")
-
-# Set the correct path for MbedTLS
-set(MbedTLS_DIR "C:/ncs/v2.7.0/modules/crypto/mbedtls/cmake")
-message(STATUS "MbedTLS_DIR: ${MbedTLS_DIR}")
 
 # Set the correct path for CONF_FILE
-set(CONF_FILE "C:/ncs/v2.7.0/bootloader/mcuboot/boot/zephyr/prj.conf")
-message(STATUS "MCUBoot project configuration set to: ${CONF_FILE}")
+set(MAIN_CONF_FILE "C:/ncs/projects/light_bulb/prj.conf")
+message(STATUS "Main CONF FILE set to ${MAIN_CONF_FILE}")
+set(MbedTLS_DIR "C:/ncs/v2.7.0/modules/crypto/mbedtls")
+message(STATUS "MbedTLS_DIR: ${MbedTLS_DIR}")
+add_library(psa_crypto_library_config INTERFACE)
+add_library(psa_interface INTERFACE)
+target_include_directories(psa_interface INTERFACE "")
 
 # Find Zephyr
 find_package(Zephyr HINTS $ENV{ZEPHYR_BASE})
 message(STATUS "CMAKE_SOURCE_DIR is set to: ${CMAKE_SOURCE_DIR}")
-
-# MBEDTLS Script Directory
-set(MBEDTLS_SCRIPTS_DIR "C:/ncs/v2.7.0/modules/crypto/mbedtls/tests/scripts")
-
-# MBEDTLS
-add_subdirectory(${CMAKE_SOURCE_DIR}/modules/crypto/mbedtls)
-target_include_directories(app PUBLIC ${CMAKE_SOURCE_DIR}/modules/crypto/mbedtls/include)
-target_link_libraries(app PUBLIC mbedcrypto mbedtls mbedx509)
 
 # Enable GNU STD support and initialize the Matter Data Model.
 include(${ZEPHYR_CONNECTEDHOMEIP_MODULE_DIR}/config/nrfconnect/app/enable-gnu-std.cmake)
 message(STATUS "Included GNU STD support.")
 include(${ZEPHYR_CONNECTEDHOMEIP_MODULE_DIR}/src/app/chip_data_model.cmake)
 project(light_bulb)
-message(STATUS "Project Name: ${PROJECT_NAME}")
 
 # NORDIC SDK APP START
 

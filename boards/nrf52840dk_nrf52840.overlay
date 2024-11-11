@@ -5,9 +5,7 @@
  */
 
 / {
-	chosen {
-		nordic,pm-ext-flash = &mx25r64;
-	};
+	
 
 	/*
 	* In some default configurations within the nRF Connect SDK,
@@ -78,4 +76,12 @@
 };
 &usbd {
 	status = "disabled";
+};
+
+&qspi {
+    status = "disabled";
+
+    mx25r64: mx25r6435f@0 {
+        status = "disabled";
+    };
 };
