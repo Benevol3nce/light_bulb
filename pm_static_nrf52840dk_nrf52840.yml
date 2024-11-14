@@ -8,7 +8,7 @@ mcuboot_pad:
   region: flash_primary
 app:
   address: 0x7200
-  size: 0xAD000
+  size: 0xC4E00
   region: flash_primary
 mcuboot_primary:
   orig_span: &id001
@@ -16,29 +16,29 @@ mcuboot_primary:
   - app
   span: *id001
   address: 0x7000
-  size: 0xAD200
+  size: 0xC5000
   region: flash_primary
 mcuboot_primary_app:
   orig_span: &id002
   - app
   span: *id002
   address: 0x7D000
-  size: 0xAD000
+  size: 0xC4E00
 mcuboot_secondary:
-  address: 0xB4200
+  address: 0xCC000
   size: 0xA000
   region: flash_primary
 scratch:
-  address: 0xBE200
+  address: 0xD6000
   size: 0x8000
   region: flash_primary
 mcuboot_primary_1:
-  address: 0xC6200
-  size: 0x19000
+  address: 0xDE000
+  size: 0xC800
   region: flash_primary
 mcuboot_secondary_1:
-  address: 0xDF200
-  size: 0x17E00
+  address: 0xEA800
+  size: 0xC800
   region: flash_primary
 factory_data:
   address: 0xF7000

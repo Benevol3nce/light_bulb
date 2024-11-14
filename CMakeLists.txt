@@ -16,6 +16,11 @@ message(STATUS "MbedTLS_DIR: ${MbedTLS_DIR}")
 add_library(psa_crypto_library_config INTERFACE)
 add_library(psa_interface INTERFACE)
 target_include_directories(psa_interface INTERFACE "")
+set(CMAKE_BINARY_DIR "C:/ncs/projects/light_bulb")
+include_directories(BEFORE ${CMAKE_BINARY_DIR}/modules/crypto/mbedtls/include/mbedtls)
+include_directories(BEFORE ${CMAKE_SOURCE_DIR}/build/light_bulb/zephyr/include/generated)
+message(STATUS "CMAKE_SOURCE_DIR set to ${CMAKE_SOURCE_DIR}")
+message(STATUS "CMAKE_BINARY_DIR set to ${CMAKE_BINARY_DIR}")
 
 # Find Zephyr
 find_package(Zephyr HINTS $ENV{ZEPHYR_BASE})

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "__assert.h": "c",
+        "version.h": "c"
+    }
+}
