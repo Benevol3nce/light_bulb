@@ -1,6 +1,9 @@
 {
     "files.associations": {
         "__assert.h": "c",
-        "version.h": "c"
+        "version.h": "c",
+        "slist.h": "c",
+        "settings.h": "c",
+        "asn1.h": "c"
     }
 }
